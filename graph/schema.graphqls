@@ -1,0 +1,28 @@
+"Catégories de produit"
+enum Category {
+  VEGETABLE
+  FRUIT
+}
+
+"Un produit est une entité qui possède un nom, une image, une catégorie et un prix"
+type Product {
+  id: ID!
+  name: String!  
+  "L'image du produit (url)"
+  cover: String!
+  category: Category!
+  "Prix unitaire en euros"
+  price: Float!
+}
+
+type Query {
+  "Retourne la liste des produits"
+  products: [Product!]!
+}
+
+type Mutation {
+  "Ajoute une commande à la liste des commandes et retourne son ID"
+  createOrder(name: String!, address: String!): String!
+  "Ajoute un produit à la commande"
+  addToCart(order_id: String!, product_id: String!, quantity: Int!): Boolean!
+}
